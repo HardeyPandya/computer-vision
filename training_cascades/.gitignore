@@ -1,0 +1,21 @@
+# .gitignore
+
+# ignore shortcuts
+*.ini
+*.lnk
+
+# ignore compressed
+*.zip
+*.7z
+
+*.DS_Store
+
+# ignore folders
+data/
+webcam/
+opencv/
+info/
+neg/
+
+# track these files, if they exist
+!.gitignore

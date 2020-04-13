@@ -1,0 +1,30 @@
+Viola-Jones Algorithm
+    Detection: Convolution + haar-like features + averaging
+
+Haar-like features:
+    quadrados escaláveis preto e branco
+Integral Image:
+    imagem gerada antes do processamento, na qual cada píxel contém a soma
+    dos píxeis à esquerda e à direita da imagem Integral
+    Permite o cálculo da média muito mais rápido, através de apenas 4 operações
+    de soma e subtração
+
+Training classifiers
+    Decidir features, thresholds
+    Shrink to 24X24
+    +4000 faces in original paper
+    +9000 random images without faces
+
+adaboost
+    Emsemble method
+    Many weak classifiers are summed to form a strong classifiers
+    Idea is combine features that complement  each other
+    Not pick the best features, but to build the best classifiers
+
+cascading
+    take a big kernel (sub-image)
+    look for the first (most important) feature
+    if its not present, skip to next kernel
+    else look for the next feature
+    
+    
