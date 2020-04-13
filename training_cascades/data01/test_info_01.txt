@@ -1,0 +1,10 @@
+opencv_createsamples -img 1.png -bg bg.txt -info info/info1.lst -pngoutput info -maxxangle 0.5 -maxyangle -0.5 -maxzangle 0.5 -num 280 
+
+opencv_createsamples -img 10.png -bg bg.txt -info info/info10.lst -pngoutput info -maxxangle 0.5 -maxyangle -0.5 -maxzangle 0.5 -num 280 
+
+opencv_createsamples -info info/info.lst -num 2800 -w 20 -h 20 -vec positives.vec
+
+#sync; echo 1 > /proc/sys/vm/drop_caches^C
+
+nohup opencv_traincascade -data data -vec positives.vec -bg bg.txt -numPos 1800 -numNeg 900 -numStages 20 -w 20 -h 20
+
