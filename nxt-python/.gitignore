@@ -16,6 +16,7 @@ webcam/
 opencv/
 info/
 neg/
-
+output/
+yolo-custom/
 # track these files, if they exist
 !.gitignore
