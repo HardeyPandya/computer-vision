@@ -27,4 +27,93 @@ cascading
     if its not present, skip to next kernel
     else look for the next feature
     
+Deep Sparse Rectifier Neural Networks
+    Rectifier activation function is very good for sentiment analisis
+    in bag of words, binary vectors, reviwe-stars approach.
+
+Neural Networks
+    y - actual value
+    ^y - prediction
+
+    Gradient descent, Batch
+        Prediction for all the epoch; 
+        Cost fuction is calculated for all the epoch, and the average is taken;
+        C=sum(1/2(y^-y)²)
+        Weights are updated;
+        Next Iteration;
+        epoch - pass trhough the whole dataset
+        -more chance of finding local minimum
+
+    Stochastic Gradient descent
+        Predictions for single observation
+        Cost for single observation
+        Updates Weights
+        -faster and more fluctuation => more chance of finding global minimum
+
+    Mini-batch gradient descent 
+        Combine the two methods
+
+Neuroevolução - IA, Denis
+    𝑧 = ∑𝑤𝑖 𝑥𝑖
+    Em notação vetorial:
+    𝑧 = w𝑇 x
+    Também é possível substituir a somatória pelo produto interno
+    w ⋅ x
+
+RNN - LSTM
+    RNN são úteis para lembrar de dados anteriores
+    RNNs comuns têm problemas com dados muito antigos
+    LSTM resolve esse problema
+    RNN comuns eram compostas de múltiplas células de uma camada de tanh
+        Uma camada é composta pelos neurônios de entrada, seus pesos,
+        seu bias, uma soma ponderada pelos pesos, e uma função de ativação
+        A função de ativação Tanh gera um resultado pertencente ao d (-1,1)
+        Já a sigmoide, [0,1]
+        Tanh é uma função de ativação
+    Cell state
+        Linha horizontal superior que flui em todas as células
+        Gate - camada sigmoid + pointwise multiplication na cell state
+            Quanto mais próximo de 1 for a saída da camada,
+            maior a mudança no Cell state
     
+    *Operações
+        Produto escalar: u . v
+            Entrada são 2 vetores
+            Saída é um escalar
+        Produto vetorial: u x v
+            Entrada são 2 vetores
+            Saída é um vetor
+        Produto interno: AB
+            Ordem importa
+            Entrada são 2 matrizes
+            Saída é uma matriz
+
+    Step-by-step
+        Forget gate layer
+            Camada sigmoid + pointwise multiplication
+            Decide quanto vai ser mantida da informação anterior
+            Recebe ht−1 e xt, onde xt é o input
+            Equação:
+                ht-1 é um vetor de outputs da célula anterior
+                xt é o vetor de entrada
+                Saída = sigmoide(matrizPesos produtoInterno concatenação(ht-1, xt) + vetorBias)
+        New information
+            Input Gate layer
+                Quais valores serão atualizados
+                Saída = sigmoide(pesos produtoInterno concatenação(ht-1, xt) + bias)
+            Tanh layer
+                Cria vetor de novos candidatos ~C
+                ~Ct = tanh(pesos produtoInterno concatenação(ht-1, xt) + bias)
+        
+        Updating the cell state
+            Estado antigo (Ct-1) é multiplicado pela saída do Forget gate layer(ft)
+            Adiciona-se (it * ~Ct), a saída da Tanh layer escalada pela saída do Input Gate layer
+            Ct = (ft * Ct-1) + (it * ~Ct)
+        
+        Output
+            Baseado no Cell State (e input?) porém filtrado
+            Sigmoid Layer
+                Decide qual partes do Cell State passam
+            Tanh function
+                Para alterar domínio do Output
+            
