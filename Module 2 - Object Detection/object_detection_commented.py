@@ -15,7 +15,6 @@ from ssd import build_ssd
 import imageio
     #Video processing
 
-
 def detect(frame, net, transform): 
     '''We define a detect function that will take as inputs, a frame, a ssd neural network, and a transformation to be applied on the images, and that will return the frame with the detector rectangle. '''
     height, width = frame.shape[:2]
@@ -65,4 +64,5 @@ for i, frame in enumerate(reader): # We iterate on the frames of the output vide
     
     writer.append_data(frame) # We add the next frame in the output video.
     print(i) # We print the number of the processed frame.
+cv2.destroyAllWindows()
 writer.close() # We close the process that handles the creation of the output video.
