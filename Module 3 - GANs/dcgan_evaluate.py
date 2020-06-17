@@ -43,14 +43,17 @@ noise = torch.randn(batchSize, 100, 1, 1)
 noise = Variable(noise)
 fake = netG(noise) #minibatch of fake images
 
+vutils.save_image(fake.data,  '%s/evaluation_epoch_%03d_org.png' % ("./results", state["epoch"]))
+
 #Normalize
+
 fake = fake.view(fake.size(1), -1)
 fake -= fake.min(1, keepdim=True)[0]
 fake /= fake.max(1, keepdim=True)[0]
 fake = fake.view(batchSize, 3, 64, 64)
 
 #Saving
-vutils.save_image(fake.data,  '%s/evaluation_epoch_%03d.png' % ("./results", state["epoch"]))
+vutils.save_image(fake.data,  '%s/evaluation_epoch_%03d_norm.png' % ("./results", state["epoch"]))
 
 
 
